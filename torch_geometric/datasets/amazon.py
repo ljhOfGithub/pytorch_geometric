@@ -14,7 +14,7 @@ class Amazon(InMemoryDataset):
     Nodes represent goods and edges represent that two goods are frequently
     bought together.
     Given product reviews as bag-of-words node features, the task is to
-    map goods to their respective product category.
+    map goods to their respective product category.鉴于产品审查作为文字袋节点功能，任务是将商品映射到各自的产品类别。
 
     Args:
         root (string): Root directory where the dataset should be saved.

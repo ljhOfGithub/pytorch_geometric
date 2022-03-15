@@ -133,7 +133,7 @@ class Dataset(torch.utils.data.Dataset):
 
     @property
     def processed_paths(self) -> List[str]:
-        r"""The absolute filepaths that must be present in order to skip
+        r"""The absolute filepaths that must be present in order to skip 必须用绝对路径跳过处理，已经训练好的模型
         processing."""
         files = to_list(self.processed_file_names)
         return [osp.join(self.processed_dir, f) for f in files]
