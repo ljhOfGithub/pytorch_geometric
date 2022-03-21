@@ -29,7 +29,7 @@ class Amazon(InMemoryDataset):
             transformed version. The data object will be transformed before
             being saved to disk. (default: :obj:`None`)
     """
-
+    
     url = 'https://github.com/shchur/gnn-benchmark/raw/master/data/npz/'
 
     def __init__(self, root: str, name: str,

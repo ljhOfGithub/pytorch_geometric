@@ -23,7 +23,7 @@ def collate(
     # `collate` can handle both homogeneous and heterogeneous data objects by
     # individually collating all their stores.
     # In addition, `collate` can handle nested data structures such as
-    # dictionaries and lists.
+    # dictionaries and lists.将“数据”对象列表整理为类型为“cls”的单个对象。# ' collate '可以同时处理同构和异质数据对象，方法是#分别对它们的所有存储进行排序。此外，' collate '可以处理嵌套的数据结构，如#字典和列表。
 
     if not isinstance(data_list, (list, tuple)):
         # Materialize `data_list` to keep the `_parent` weakref alive.
@@ -40,7 +40,7 @@ def collate(
     follow_batch = set(follow_batch or [])
     exclude_keys = set(exclude_keys or [])
 
-    # Group all storage objects of every data object in the `data_list` by key,
+    # Group all storage objects of every data object in the `data_list` by key,按键将' data list '中每个数据对象的所有存储对象分组
     # i.e. `key_to_store_list = { key: [store_1, store_2, ...], ... }`:
     key_to_stores = defaultdict(list)
     for data in data_list:
@@ -48,16 +48,16 @@ def collate(
             key_to_stores[store._key].append(store)
 
     # With this, we iterate over each list of storage objects and recursively
-    # collate all its attributes into a unified representation:
+    # collate all its attributes into a unified representation:这样，我们遍历每个存储对象列表，并递归地将其所有属性# collate成一个统一的表示
 
     # We maintain two additional dictionaries:
     # * `slice_dict` stores a compressed index representation of each attribute
-    #    and is needed to re-construct individual elements from mini-batches.
+    #    and is needed to re-construct individual elements from mini-batches.Slice dict '存储每个属性#的压缩索引表示，需要从小批量重建单个元素。
     # * `inc_dict` stores how individual elements need to be incremented, e.g.,
     #   `edge_index` is incremented by the cumulated sum of previous elements.
     #   We also need to make use of `inc_dict` when re-constructuing individual
     #   elements as attributes that got incremented need to be decremented
-    #   while separating to obtain original values.
+    #   while separating to obtain original values.' inc dict '存储单个元素需要如何递增，例如，# ' edge index '是由前一个元素的累积和递增的。我们还需要使用' inc dict '来重新构造单个的#元素，当属性增加时，需要减少#，而分离获得原始值。
     device = None
     slice_dict, inc_dict = defaultdict(dict), defaultdict(dict)
     for out_store in out.stores:
@@ -71,7 +71,7 @@ def collate(
             values = [store[attr] for store in stores]
 
             # The `num_nodes` attribute needs special treatment, as we need to
-            # sum their values up instead of merging them to a list:
+            # sum their values up instead of merging them to a list:' num nodes '属性需要特殊处理，因为我们需要将它们的值求和，而不是合并到一个列表中
             if attr == 'num_nodes':
                 out_store._num_nodes = values
                 out_store.num_nodes = sum(values)

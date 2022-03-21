@@ -33,6 +33,7 @@ class Dataset(torch.utils.data.Dataset):
             an :obj:`torch_geometric.data.Data` object and returns a
             transformed version. The data object will be transformed before
             being saved to disk. (default: :obj:`None`)
+        一个函数/转换，它接受:obj: ' torch_geometric.data。对象并返回转换后的版本。数据对象将在保存到磁盘之前进行转换。
         pre_filter (callable, optional): A function that takes in an
             :obj:`torch_geometric.data.Data` object and returns a boolean
             value, indicating whether the data object should be included in the
@@ -100,7 +101,7 @@ class Dataset(torch.utils.data.Dataset):
 
     @property
     def num_node_features(self) -> int:
-        r"""Returns the number of features per node in the dataset."""
+        r"""Returns the number of features per node in the dataset.返回数据集中每个节点的特性数。"""
         data = self[0]
         data = data[0] if isinstance(data, tuple) else data
         if hasattr(data, 'num_node_features'):
@@ -126,7 +127,7 @@ class Dataset(torch.utils.data.Dataset):
 
     @property
     def raw_paths(self) -> List[str]:
-        r"""The absolute filepaths that must be present in order to skip
+        r"""The absolute filepaths that must be present in order to skip为了跳过下载，必须出现的绝对文件路径
         downloading."""
         files = to_list(self.raw_file_names)
         return [osp.join(self.raw_dir, f) for f in files]
@@ -203,7 +204,7 @@ class Dataset(torch.utils.data.Dataset):
             return self.index_select(idx)
 
     def index_select(self, idx: IndexType) -> 'Dataset':
-        r"""Creates a subset of the dataset from specified indices :obj:`idx`.
+        r"""Creates a subset of the dataset from specified indices :obj:`idx`.  
         Indices :obj:`idx` can be a slicing object, *e.g.*, :obj:`[2:5]`, a
         list, a tuple, or a :obj:`torch.Tensor` or :obj:`np.ndarray` of type
         long or bool."""

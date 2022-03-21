@@ -28,23 +28,23 @@ class Node2Vec(torch.nn.Module):
         node2vec.py>`_.
 
     Args:
-        edge_index (LongTensor): The edge indices.
+        edge_index (LongTensor): The edge indices.边的索引
         embedding_dim (int): The size of each embedding vector.
         walk_length (int): The walk length.
         context_size (int): The actual context size which is considered for
             positive samples. This parameter increases the effective sampling
-            rate by reusing samples across different source nodes.
+            rate by reusing samples across different source nodes.阳性样本考虑的实际上下文大小。该参数通过跨不同的源节点重用样本来提高有效采样率。
         walks_per_node (int, optional): The number of walks to sample for each
             node. (default: :obj:`1`)
-        p (float, optional): Likelihood of immediately revisiting a node in the
+        p (float, optional): Likelihood of immediately revisiting a node in the 在行走过程中，有可能再次访问某个节点。
             walk. (default: :obj:`1`)
         q (float, optional): Control parameter to interpolate between
-            breadth-first strategy and depth-first strategy (default: :obj:`1`)
+            breadth-first strategy and depth-first strategy (default: :obj:`1`)在宽度优先策略和深度优先策略之间插入的控制参数
         num_negative_samples (int, optional): The number of negative samples to
-            use for each positive sample. (default: :obj:`1`)
+            use for each positive sample. (default: :obj:`1`)对每个正样本使用的负样本数。
         num_nodes (int, optional): The number of nodes. (default: :obj:`None`)
         sparse (bool, optional): If set to :obj:`True`, gradients w.r.t. to the
-            weight matrix will be sparse. (default: :obj:`False`)
+            weight matrix will be sparse. (default: :obj:`False`)关于权重矩阵的梯度是稀疏矩阵
     """
     def __init__(self, edge_index, embedding_dim, walk_length, context_size,
                  walks_per_node=1, p=1, q=1, num_negative_samples=1,
